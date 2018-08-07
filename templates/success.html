@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .tcont{
+            background:{{color}};
+            min-height:5em;
+            border radius: 8px;
+            padding: 10px;
+            text-indent: 1em;
+        }
+        h1{
+            text-indent: 4em;
+            color: rgb(226, 62, 62);
+            display: inline
+        }
+    </style>
+    <title>Validate the world</title>
+  </head>
+  <body>
+      <nav class="navbar navbar-dark bg-dark">
+          <h1> This is a SUPER DANGEROUS page
+              <form action="success" method="POST">
+                  <button name="home" value="home" type="submit" class="btn btn-lg btn-primary">Home</button>
+              </form>
+          </h1>
+    </nav>
+      <div class = "container tcont">
+        <!--  color container -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <h4 class={{category}}>{{ message }}</h4>
+          {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+      <div class = "container">
+            <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>   
+        {% for x in userdata%}
+        <tbody>
+            <tr>
+                <th scope="row">{{x['id']}}</th>
+                <td>{{x['email']}}</td>
+                <td> {{x['create_d']}}</td>
+                <td>@{{x['update_d']}}</td>
+                <td>
+                    <form action="success" method="post">
+                    <button name ={{x['id']}} value ={{x['id']}} type="submit" class="close button" >&times;</button>
+                    </form>
+                    </td>
+            </tr>
+        </tbody>         
+        {%endfor%}
+    </table>        
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
